@@ -11,9 +11,14 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGOOSE_URL).then(()=>console.log("DB connected"))
     .then((err)=>{err;})
 
-const databaseSeeder = require("./databaseSeeder")
+const databaseSeeder = require("./databaseSeeder");
+const UserRoute = require("./routes/User");
+app.use(express.json());
+
 // database seeder routes
-app.use("/api/seed", databaseSeeder)
+app.use("/api/seed", databaseSeeder);
+// routes for users
+app.use("/api/users", UserRoute);
 
 app.listen(PORT || 9000, ()=>{
     console.log(`Server listening on port ${PORT}`)
