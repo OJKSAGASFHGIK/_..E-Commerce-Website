@@ -15,9 +15,9 @@ const databaseSeeder = require("./databaseSeeder");
 const UserRoute = require("./routes/User");
 app.use(express.json());
 
-// database seeder routes
+// database seeder routes /api/seed/users
 app.use("/api/seed", databaseSeeder);
-// routes for users
+// routes for users /api/users/login
 app.use("/api/users", UserRoute);
 
 app.listen(PORT || 9000, ()=>{
