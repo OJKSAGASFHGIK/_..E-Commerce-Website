@@ -49,4 +49,61 @@ OrderRoute.post(
     })
 );
 
+// order payment
+OrderRoute.put(
+    "/:id/payment",
+    AuthenticantionProtect,
+    asyncHandler(async(req, res) => {
+        const order = await Order.findById(req.params.id);
+        if (order){
+            order.isPaid = true;
+            order.paidAt = Date.now();
+            order.paymentResult = {
+                id: req.body.id,
+                status: req.body.status,
+                updated_time: req.body.create_time,
+                email_address: req.body.email_address,
+            };
+
+            const updatedOrder = await order.save();
+            console.log(updatedOrder);
+            res.status(200).json(updatedOrder);
+        } else {
+            res.status(404);
+            throw new Error("Order not found.");
+        }
+    })
+);
+
+// get orders
+OrderRoute.get(
+    "/",
+    AuthenticantionProtect,
+    asyncHandler(async(req, res) => {
+        const orders = await Order.find({ user: req.user._id }).sort({ _id:-1 });
+        if (orders){
+            res.status(200).json(orders);
+        } else {
+            res.status(404);
+            throw new Error("Orders not found.")
+        }
+    })
+);
+
+// get one order by id
+OrderRoute.get(
+    "/:id",
+    AuthenticantionProtect,
+    asyncHandler(async(req, res) => {
+        const order = await Order.findById(req.params.id).populate("user", "email");
+        if (order){
+            res.status(200).json(order);
+        } else {
+            res.status(404);
+            throw new Error("Order not found.");
+        }
+    })
+
+)
+
 module.exports = OrderRoute;
