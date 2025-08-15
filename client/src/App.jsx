@@ -6,14 +6,14 @@ import {
 } from "react-router-dom";
 
 import Home from './sections/pages/Home.jsx';
-import ProductDetails from './sections/pages/ProductDetails.jsx';
+import ProductDetail from './sections/pages/ProductDetail.jsx';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route exact path="/details" element={<ProductDetails/>} />
+        <Route exact path="/products/:id" element={<ProductDetail/>} />
       </Routes>
     </Router>
   );
