@@ -1,30 +1,49 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+
 import Layout from './../../layout/Layout.jsx';
+import { userLoginAction } from './../../../redux/actions/User.js';
+
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const userLoginReducer = useSelector((state) => state.userLoginReducer);
+    
+    const { loading, error } = userLoginReducer;
+    const dispatch = useDispatch();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(userLoginAction(email, password))
+    };
+
     return (
         <Layout>
+            {loading ? <h1>Loading</h1>
+            : error ? <h1>{error}</h1>
+            : <>
             {/*
-        This example requires updating your template:
+                This example requires updating your template:
 
-        ```
-        <html className="h-full bg-white">
-        <body className="h-full">
-        ```
-      */}
+                ```
+                <html className="h-full bg-white">
+                <body className="h-full">
+                ```
+            */}
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <h1 className='text-4xl font-extrabold text-center bg-gradient-to-r from-red-950 via-red-500 to-red-300 bg-clip-text text-transparent mb-1 leading-tight'>Login</h1>
-                    <h2 className="text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                        Sign in to your account
-                    </h2>
+                    <h1 className='text-4xl font-extrabold text-center bg-gradient-to-r from-red-950 via-red-500 to-red-300 bg-clip-text text-transparent mb-1 leading-tight'>
+                        Login
+                    </h1>
                 </div>
 
-                <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form action="#" method="POST" className="space-y-6">
+                <div className="mt-3 w-xs sm:w-md">
+                    <form action="#" method="POST" className="space-y-1" onSubmit={submitHandler}>
                         <div>
                             <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                                 Email address
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-1">
                                 <input
                                     id="email"
                                     name="email"
@@ -32,6 +51,7 @@ const Login = () => {
                                     required
                                     autoComplete="email"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
+                                    value={email} onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -42,7 +62,7 @@ const Login = () => {
                                     Password
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-1">
                                 <input
                                     id="password"
                                     name="password"
@@ -50,6 +70,7 @@ const Login = () => {
                                     required
                                     autoComplete="current-password"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
+                                    value={password} onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <div className="text-sm">
                                     <a href="#" className="font-semibold text-blue-600 hover:text-blue-500">
@@ -70,6 +91,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+            </>}
         </Layout>
     )
 }

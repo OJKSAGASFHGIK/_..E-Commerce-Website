@@ -10,18 +10,18 @@ import {
     USER_REGISTER_REQ_SUCCESS,
     USER_REGISTER_REQ_FAIL
 } from "./../constants/User.Js";
-import BASE_URL from './../constants/BASE_URL';
+import {BASE_URL} from './../constants/BASE_URL';
 
 // user login action
 export const userLoginAction = (email, password) => async(dispatch) => {
     try{
-        dispatch({ USER_LOGIN_REQ });
+        dispatch({ type: USER_LOGIN_REQ });
         const config = { headers: {"Content-Type": "application/json"} }
-        const data = await axios.post(`${BASE_URL}/api/users/login`, { email, password }, config);
+        const { data } = await axios.post(`${BASE_URL}/api/users/login`, { email, password }, config);
 
         dispatch({ type: USER_LOGIN_REQ_SUCCESS, payload: data });
         localStorage.setItem("userInfo", JSON.stringify(data));
-    } catch {error}{
+    } catch(error){
         dispatch({
             type: USER_LOGIN_REQ_FAIL,
             payload: error.response.data.message
@@ -40,7 +40,7 @@ export const userLogoutAction = () => async(dispatch) => {
 export const userRegisterAction = (name, email, password) => async(dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQ })
-        const config = { headers: {"Content-Type:": "application/json"} }
+        const config = { headers: {"Content-Type": "application/json"} }
 
         const { data } = await axios.post(`${BASE_URL}/api/users`, {name, email, password}, config);
 

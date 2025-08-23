@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { productListAction } from './../../redux/actions/product.js';
+import { productListAction } from './../../redux/actions/Product.js';
 
 
 const Products = () => {

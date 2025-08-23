@@ -2,7 +2,7 @@ import Layout from '../layout/Layout.jsx';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { productAction } from './../../redux/actions/product.js';
+import { productAction } from './../../redux/actions/Product.js';
 
 function ProductDetails() {
   const { id } = useParams();
