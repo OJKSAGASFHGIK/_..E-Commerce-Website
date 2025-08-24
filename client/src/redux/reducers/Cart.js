@@ -12,7 +12,7 @@ export const cartReducer = (
     switch(action.type){
         case ITEM_ADD_TO_CART:
             const item = action.payload;
-            const existItem = state.cartItem.find((x) => x.product === item.product)
+            const existItem = state.cartItems.find((x) => x.product === item.product)
             if(existItem){
                 return {
                     ...state,
@@ -48,6 +48,6 @@ export const cartReducer = (
                 paymentMethod: action.payload
             }
         default:
-            return {}
+            return state;
     }
 }

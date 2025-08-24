@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { productAction } from './../../redux/actions/Product.js';
+import { addToCartAction } from './../../redux/actions/Cart.js';
+
 
 function ProductDetails() {
   const { id } = useParams();
@@ -14,6 +16,11 @@ function ProductDetails() {
   useEffect(() => {
     dispatch(productAction(id))
   }, [dispatch, id])
+
+  const [quantity, setQuantity] = useState(1);
+  const addToCartHandler = () => {
+    dispatch(addToCartAction(id, quantity));
+  }
 
   return (
     <Layout>
@@ -121,10 +128,35 @@ function ProductDetails() {
                     </a>
                   </div>
                 </div>
-
-                <button className="mt-3 cursor-pointer bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300">
-                  Add to Cart
-                </button>
+                
+                <div className='flex justify-between'>
+                {product.countInStock > 0 ?
+                  <div className=''>Quantity: 
+                  <select
+                    value={quantity}
+                    onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+                    className="mt-2 ml-1 rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10"
+                  >
+                    {[...Array(product.countInStock).keys().map(
+                      (x) => (
+                        <option key={x+1} value={x+1}>
+                          {x+1}
+                        </option>
+                      )
+                    )]}
+                  </select>
+                  </div>
+                  : <></>}
+                  {product.countInStock > 0 ? 
+                  <button onClick={addToCartHandler} className="mt-3 cursor-pointer bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300">
+                    Add to Cart
+                  </button>
+                  :
+                  <h1 className="cursor-not-allowed mt-3 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300">
+                    Unavailable
+                  </h1>}
+                  
+                </div>
 
 
                 <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
