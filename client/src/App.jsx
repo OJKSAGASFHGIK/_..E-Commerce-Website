@@ -11,6 +11,8 @@ import Home from './sections/pages/Home.jsx';
 import ProductDetail from './sections/pages/ProductDetail.jsx';
 import Login from './sections/pages/auth/Login.jsx';
 import Register from './sections/pages/auth/Register.jsx';
+import Checkout from './sections/pages/Checkout.jsx';
+
 
 function App() {
   const userLoginReducer = useSelector((state) => state.userLoginReducer);
@@ -21,8 +23,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/products/:id" element={<ProductDetail/>} />
+        
         <Route exact path="/login" element={userInfo ? <Navigate to="/"/> : <Login/>} />
         <Route exact path="/register" element={userInfo ? <Navigate to="/"/> : <Register/>} />
+        
+        <Route exact path="/checkout" element={<Checkout/>} />
       </Routes>
     </Router>
   );

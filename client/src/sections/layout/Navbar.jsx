@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import UserDropdown from './../components/Dropdown.jsx';
 import { userLogoutAction } from './../../redux/actions/User.js';
 
+import Checkout from './../pages/Checkout.jsx';
+
 const Navbar = () => {
     const navRef = useRef(null);
     const [navHeight, setNavHeight] = useState(0);
@@ -35,9 +37,11 @@ const Navbar = () => {
 
     const quantity = useSelector((state) => state.cartReducer.cartItems.reduce((total, item) => total + item.quantity, 0));
 
+    const [open, setOpen] = useState(false)
+
     return(
         <>
-            <nav ref={navRef} className="bg-white dark:bg-red-800 fixed w-full z-20 top-0 start-0 border-b border-red-200 dark:border-red-600">
+            <nav ref={navRef} className="bg-white dark:bg-red-800 fixed w-full z-10 top-0 start-0 border-b border-red-200 dark:border-red-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo"/>
@@ -56,6 +60,7 @@ const Navbar = () => {
                 : (
                     <div className="flex items-center space-x-2">
                         <button
+                            onClick={() => setOpen(true)}
                             data-collapse-toggle="navbar-cta"
                             type="button"
                             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -77,9 +82,12 @@ const Navbar = () => {
                             />
                         </svg>
 
-                            <span>{quantity}</span>
+                        <span>{quantity}</span>
                         </button>
+
                         <UserDropdown logoutHandler={logoutHandler} />
+
+                        <Checkout open={open} setOpen={setOpen}/>
                     </div>
                 )}
             </div>
