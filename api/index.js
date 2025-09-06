@@ -28,6 +28,11 @@ app.use("/api/products", ProductRoute);
 // routes for orders
 app.use("/api/orders", OrderRoute)
 
+
+app.use("/api/config/paypal", (req, res) => {
+    res.send(process.env.PAYPAL_CLIENT_ID);
+})
+
 app.listen(PORT || 9000, ()=>{
     console.log(`Server listening on port ${PORT}`)
 })
