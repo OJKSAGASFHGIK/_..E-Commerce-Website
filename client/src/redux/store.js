@@ -6,8 +6,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import { productListReducer, productReducer } from "./reducers/Product";
 import { userLoginReducer, userRegisterReducer } from './reducers/User';
 import { cartReducer } from './reducers/Cart';
-
-
+import { orderReducer, orderDetailReducer, orderPaymentReducer, orderListReducer } from './reducers/Order';
 
 const persistConfig = {
     key: "root",
@@ -18,7 +17,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
     productListReducer, productReducer,
     userLoginReducer, userRegisterReducer,
-    cartReducer
+    cartReducer,
+
+    orderReducer, orderDetailReducer, orderPaymentReducer, orderListReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

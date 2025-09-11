@@ -29,7 +29,7 @@ const Products = () => {
                             <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                             <h2 className="text-gray-900 title-font text-lg font-medium">{product.name}</h2>
                             <div className="flex justify-between">
-                                <p className="mt-1">{product.price}</p>
+                                <p className="mt-1 text-green-900">${product.price}</p>
                                 <p className="mt-1">★: {product.numReview}</p>
                             </div>
                         </div>

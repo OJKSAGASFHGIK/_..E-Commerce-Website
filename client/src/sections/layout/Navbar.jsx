@@ -7,6 +7,8 @@ import { userLogoutAction } from './../../redux/actions/User.js';
 
 import Checkout from './../pages/Checkout.jsx';
 
+import icon from './../../assets/store-svgrepo-com.svg';
+
 const Navbar = () => {
     const navRef = useRef(null);
     const [navHeight, setNavHeight] = useState(0);
@@ -44,7 +46,7 @@ const Navbar = () => {
             <nav ref={navRef} className="bg-white dark:bg-red-800 fixed w-full z-10 top-0 start-0 border-b border-red-200 dark:border-red-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo"/>
+                <img src={icon} className="h-8" alt="Flowbite Logo"/>
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gre-Commerce</span>
             </a>
             <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -67,20 +69,24 @@ const Navbar = () => {
                             aria-controls="navbar-cta"
                             aria-expanded="false"
                         >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="size-6"
-                        >
-                            <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                            />
-                        </svg>
+                        
+                        <div className="cursor-pointer">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="size-6"
+                            >
+                                <path
+                                    className="text-white"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                                />
+                            </svg>
+                        </div>
 
                         <span>{quantity}</span>
                         </button>
@@ -91,7 +97,7 @@ const Navbar = () => {
                     </div>
                 )}
             </div>
-            <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            {/* <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-red-100 rounded-lg bg-red-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-red-800 md:dark:bg-red-800 dark:border-red-700">
                 <li>
                     <a href="#" className="block py-2 px-3 text-white bg-gray-700 rounded-sm md:bg-transparent md:text-gray-700 md:p-0 md:dark:text-gray-500" aria-current="page">Home</a>
@@ -106,7 +112,7 @@ const Navbar = () => {
                     <a href="#" className="block py-2 px-3 text-red-900 rounded-sm hover:bg-red-100 md:hover:bg-transparent md:hover:text-gray-700 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-red-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-red-700">Contact</a>
                 </li>
                 </ul>
-            </div>
+            </div> */}
             </div>
             </nav>
             <div style={{ height: navHeight }}></div>

@@ -30,8 +30,8 @@ export default function CartItem({ cartItems }){
                                     </div>
                                     {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                 </div>
-                                <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-900">
+                                <div className="flex flex-col text-sm">
+                                    <div className="flex items-center text-gray-900">
                                         Quantity:
 
                                         <select
@@ -49,7 +49,7 @@ export default function CartItem({ cartItems }){
                                             ))}
 
                                         </select>
-                                    </p>
+                                    </div>
 
                                     <div className="flex">
                                         <button onClick={() => removeFromCartHandler(product.product)} type="button" className="cursor-pointer font-medium text-red-600 hover:text-red-500">

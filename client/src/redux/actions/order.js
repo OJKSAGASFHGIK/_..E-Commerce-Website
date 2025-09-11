@@ -14,10 +14,10 @@ import {
     ORDER_LIST_REQ,
     ORDER_LIST_REQ_FAIL,
     ORDER_LIST_REQ_SUCCESS
-} from './../constants/Order';
+} from '../constants/Order';
 
-import { BASE_URL } from './../constants/BASE_URL';
-import { ITEM_CART_CLEAR } from './../constants/Cart';
+import { BASE_URL } from '../constants/BASE_URL';
+import { ITEM_CART_CLEAR } from '../constants/Cart';
 import { userLogoutAction } from './User';
 
 
