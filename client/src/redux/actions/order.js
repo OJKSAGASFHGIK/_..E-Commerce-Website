@@ -45,7 +45,7 @@ export const orderAction = (order) => async(dispatch, getState) => {
 };
 
 // order detail action
-export const orderDetailAction = () => async(dispatch, getState) => {
+export const orderDetailAction = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: ORDER_DETAIL_REQ });
         const userInfo = getState().userLoginReducer.userInfo;
@@ -55,7 +55,7 @@ export const orderDetailAction = () => async(dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post(
+        const { data } = await axios.get(
             `${BASE_URL}/api/orders/${id}`,
             config
         );

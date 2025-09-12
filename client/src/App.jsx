@@ -14,8 +14,8 @@ import Register from './sections/pages/auth/Register.jsx';
 import Checkout from './sections/pages/Checkout.jsx';
 
 import PlaceOrder from './sections/pages/PlaceOrder.jsx';
+import OrderConfirm from './sections/pages/OrderConfirm.jsx';
 import OrderHistory from './sections/pages/OrderHistory.jsx';
-
 
 function App() {
   const userLoginReducer = useSelector((state) => state.userLoginReducer);
@@ -33,6 +33,7 @@ function App() {
         <Route exact path="/checkout" element={<Checkout/>} />
         <Route exact path="/placeorder" element={<PlaceOrder/>} />
 
+        <Route exact path="/order/:id" element={<OrderConfirm/>} />
         <Route exact path="/order-history" element={<OrderHistory/>} />
       </Routes>
     </Router>
