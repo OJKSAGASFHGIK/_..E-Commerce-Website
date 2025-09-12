@@ -29,7 +29,7 @@ const Register = () => {
                     </h1>
                 </div>
 
-                <div className="mt-3 w-xs sm:w-md">
+                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <form action="#" method="POST" className="space-y-1" onSubmit={submitHandler}>
                         <div>
                             <label htmlFor="text" className="block text-sm/6 font-medium text-gray-900">

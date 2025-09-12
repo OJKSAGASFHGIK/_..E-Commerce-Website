@@ -145,7 +145,7 @@
                 
                 <button
                   onClick={saveShippingAddresss}
-                  className=" mb-10 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
+                  className="cursor-pointer mb-10 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
                 >
                   Save Shipping Address
                 </button>
